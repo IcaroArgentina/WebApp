@@ -1,0 +1,56 @@
+
+@media (min-width:451px)  { 
+  @keyframes modalUp {
+    0% {
+      transform:translate(-50%, -50%);
+      opacity:1;
+    }
+    
+    100% {
+      transform:translate(-50%, -300%);
+      opacity:0;
+    }
+  }
+
+  @keyframes modalDown {
+    0% {
+      transform:translate(-50%, -300%);
+      opacity:0;
+    }
+    50% {
+        transform:translate(-50%, -150%);
+        opacity:0;
+      }
+    100% {
+      transform:translate(-50%, -50%);
+      opacity:1;
+    }
+  }
+
+.ReactModal__Overlay {
+opacity: 0;
+transition: opacity 500ms ease-in-out;
+
+
+}
+
+.ReactModal__Overlay--after-open{
+opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+
+opacity: 0;
+
+}
+
+.ReactModal__Content{
+animation: modalDown .5s ease-out forwards;
+}
+.ReactModal__Content--before-close{
+animation: modalUp .5s ease-out forwards ;
+
+}
+
+}
+    

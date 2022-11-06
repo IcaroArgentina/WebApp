@@ -1,0 +1,86 @@
+export const SOLICITUDESOPTIONS = [
+	{
+		id: 'aprobada',
+		name: 'Aprobado',
+		value: 'Aprobada',
+	},
+	{
+		id: 'rechazada',
+		name: 'Rechazado',
+		value: 'Rechazada',
+	},
+];
+
+export const SOLICITUDESROWS = [
+	{
+		nombre: 'name',
+		inputLabel: 'Nombre',
+		isRequired: true,
+		type: 'text',
+		id: 1,
+		nroOrden: 1,
+		width: '45%',
+	},
+	{
+		nombre: 'lastname',
+		inputLabel: 'Apellido',
+		isRequired: true,
+		type: 'text',
+		id: 2,
+		nroOrden: 2,
+		width: '45%',
+	},
+	{
+		nombre: 'email',
+		inputLabel: 'Email',
+		isRequired: true,
+		type: 'text',
+		id: 3,
+		nroOrden: 3,
+		width: '45%',
+	},
+	{
+		nombre: 'dni',
+		inputLabel: 'DNI',
+		isRequired: true,
+		type: 'number',
+		id: 4,
+		nroOrden: 4,
+		width: '45%',
+	},
+	{
+		nombre: 'linkCertificado',
+		inputLabel: 'Link',
+		isRequired: true,
+		type: 'text',
+		id: 5,
+		nroOrden: 5,
+		width: '45%',
+	},
+	{
+		nombre: 'estadoCertificado',
+		inputLabel: 'Estado del Certificado',
+		isRequired: true,
+		type: 'text',
+		id: 6,
+		nroOrden: 6,
+		width: '45%',
+	},
+
+	{
+		nombre: 'edit',
+		inputLabel: 'Editar',
+		type: 'text',
+		id: 7,
+		nroOrden: 7,
+		width: '45%',
+	},
+	{
+		nombre: 'modificado',
+		inputLabel: 'Modificado',
+		type: 'text',
+		id: 8,
+		nroOrden: 8,
+		width: '45%',
+	},
+];
