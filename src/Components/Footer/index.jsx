@@ -6,17 +6,15 @@ import ContactoModal from '../Shared/Modals/ContactModal';
 import IcaroInCompanyModal from '../Shared/Modals/IcaroInCompanyModal';
 import React from 'react';
 import SocialMediaIcon from '../Shared/Icons/FooterIcons';
-import { mainFooterContext } from '../../Context/FooterContext';
 import { projectContext } from './../../Context/ProjectContext';
-import { sortArrayByOrdenValue } from '../../Utils';
 import styled from 'styled-components';
 import theme from '../../Theme/base';
 import { useIsCompact } from '../../Hooks/Client';
 import { useIsMobile } from '../../Hooks/Client';
+import { FOOTERCONTENT } from '../../Constants/Footer/footer';
 
 const Footer = () => {
   const { is404 } = useContext(projectContext);
-  const { footerContent } = useContext(mainFooterContext);
   const [pending, setPending] = useState(true);
   const [inCompanyModalIsOpen, setInCompanyModalIsOpen] = useState(false);
   const [ContactoModalIsOpen, setContactoModalIsOpen] = useState(false);
@@ -45,14 +43,11 @@ const Footer = () => {
   }
 
   useEffect(() => {
-    if (footerContent) {
+    if (FOOTERCONTENT) {
       setPending(false);
     }
-  }, [footerContent]);
+  }, []);
 
-  const getFooterContent = () => {
-    return sortArrayByOrdenValue(footerContent);
-  };
   function scrollTo(route, offset = 0) {
     location !== '/' && navigate('/');
     setTimeout(() => {
@@ -98,7 +93,7 @@ const Footer = () => {
           <ContentContainer mobile={mobile}>
             {pending
               ? null
-              : getFooterContent().map((element, index) => {
+              : FOOTERCONTENT.map((element, index) => {
                   const { Titulo, links } = element;
                   return (
                     <ColumnContainer key={index}>
@@ -125,6 +120,7 @@ const Footer = () => {
                                     setContactoModalIsOpen(true);
                                     break;
                                   default:
+                                    window.open(url);
                                     break;
                                 }
                               }
@@ -133,7 +129,6 @@ const Footer = () => {
                                   key={index + 100}
                                   onClick={footerUrl}
                                   icono={icono}
-                                  href={url[0] !== '/' ? url : '#'}
                                   target="_blank"
                                 >
                                   {icono && (
@@ -234,8 +229,10 @@ const FooterParragraph = styled.p`
   font-size: 0.875rem;
 `;
 
-const FooterAnchor = styled.a`
+const FooterAnchor = styled.button`
   font-family: ${theme.fontFamily.secondary};
+  background-color: transparent;
+  border: none;
   color: ${theme.color.white};
   font-size: 0.875rem;
   display: ${({ icono }) => (icono ? ' flex' : 'block')};

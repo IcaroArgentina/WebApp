@@ -25,7 +25,7 @@ const ModalChat = ({
 	useEffect(() => {
 		currentConsultaId &&
 			onSnapshot(
-				collection(db, `Usuarios/${currentUser.uid}/Consultas`),
+				collection(db, 'Consultas'),
 				(snapshot) =>
 					setMessages(
 						snapshot.docs
@@ -51,11 +51,7 @@ const ModalChat = ({
 
 		let msgs = messages && messages[0].mensajes;
 
-		const ref = doc(
-			db,
-			`Usuarios/${currentUser.uid}/Consultas`,
-			currentConsultaId
-		);
+		const ref = doc(db, 'Consultas', currentConsultaId);
 
 		updateDoc(ref, { mensajes: [...msgs, newMessage] });
 		setQuestion('');
@@ -70,7 +66,7 @@ const ModalChat = ({
 		<MainContainer>
 			<ModalContainer mobile={mobile}>
 				<OptionButtons>
-					<DeleteIcon onClick={handleDelete} marginTop='13px' />
+					<DeleteIcon onClick={handleDelete} />
 					<VscClose
 						onClick={() => setChatModalOpen(false)}
 						style={mobile && { marginTop: 15 }}

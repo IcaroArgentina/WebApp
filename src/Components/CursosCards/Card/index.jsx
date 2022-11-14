@@ -35,7 +35,7 @@ const Card = ({
 				<>
 					<CourseContent isItalic>{duracion || `  `}</CourseContent>
 					<CourseContent>
-						{comision?.precioComision
+						{comision & comision?.precioComision
 							? `$${comision?.precioComision}`
 							: info.precioInfo}
 					</CourseContent>

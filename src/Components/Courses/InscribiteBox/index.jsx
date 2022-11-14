@@ -16,7 +16,8 @@ import { userContext } from '../../../Context/UserContext';
 
 const InscribiteBox = ({ course }) => {
 	const { nextCourses } = useContext(projectContext);
-	const { currentUser, users } = useContext(userContext);
+	const { currentUser } = useContext(userContext);
+	const { usuariosList } = useContext(projectContext);
 	const { CategoriaID } = course;
 	const [courseDates, setCoursesDates] = useState([]);
 	const mobile = useIsMobile();
@@ -31,10 +32,12 @@ const InscribiteBox = ({ course }) => {
 	useEffect(() => {
 		if (currentUser) {
 			onSnapshot(
-				collection(db, `Usuarios/${currentUser.uid}/Inscripciones`),
+				collection(db, 'Inscripciones'),
 				(snapshot) =>
 					setCurrentInscripcion(
-						snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+						snapshot.docs
+							.map((doc) => ({ ...doc.data(), id: doc.id }))
+							.filter((e) => e.userUid === currentUser.uid)
 					),
 				(error) => console.log('error', error)
 			);
@@ -44,13 +47,14 @@ const InscribiteBox = ({ course }) => {
 	useEffect(() => {
 		if (currentUser) {
 			const match =
-				currentUser && users.find((user) => user.email === currentUser.email);
+				currentUser &&
+				usuariosList.find((user) => user.email === currentUser.email);
 			match && setUserInfo(match);
 			setLoggedUser(true);
 		} else {
 			setLoggedUser(false);
 		}
-	}, [users, currentUser]);
+	}, [usuariosList, currentUser]);
 
 	useEffect(() => {
 		const date = Timestamp.now().toDate();

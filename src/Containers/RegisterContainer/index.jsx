@@ -9,13 +9,13 @@ import ShowIcon from '../../Components/Shared/Icons/ShowIcon';
 import { auth } from '../../Firebase/index';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import db from '../../Firebase';
+import { projectContext } from '../../Context/ProjectContext';
 import styled from 'styled-components';
 import theme from './../../Theme/base';
 import { useNavigate } from 'react-router-dom';
-import { userContext } from '../../Context/UserContext';
 
 const Register = ({ history }) => {
-	const { users } = useContext(userContext);
+	const { usuariosList } = useContext(projectContext);
 	const [newUser, setNewUser] = useState({});
 	const [repeatUser, setRepeatUser] = useState(false);
 	const [alertErrorPassword, setAlertErrorPassword] = useState(false);
@@ -143,10 +143,12 @@ const Register = ({ history }) => {
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		const repeatEmail = users.find((user) => user.email === newUser.email)
+		const repeatEmail = usuariosList.find(
+			(user) => user.email === newUser.email
+		)
 			? true
 			: false;
-		const repeatDNI = users.find((user) => user.dni === newUser.dni)
+		const repeatDNI = usuariosList.find((user) => user.dni === newUser.dni)
 			? true
 			: false;
 
@@ -253,7 +255,7 @@ const Register = ({ history }) => {
 						) : alertError.phonenumber ? (
 							<span className='alertError'>{alertError.phonenumber}</span>
 						) : (
-							!newUser.phonenumber && '(Ejemplo: 3517637557)'
+							!newUser.phonenumber && '(Ejemplo: 351 865-6685)'
 						)}
 					</label>
 					<input

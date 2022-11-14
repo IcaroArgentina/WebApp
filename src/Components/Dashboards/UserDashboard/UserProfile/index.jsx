@@ -18,11 +18,11 @@ import { userContext } from '../../../../Context/UserContext';
 
 const UserProfile = () => {
 	const mobile = useIsMobile();
-	const { currentUser, users } = useContext(userContext);
+	const { currentUser } = useContext(userContext);
 	const [userData, setUserData] = useState({});
 	const [phone, setPhone] = useState('');
 	const [error, setError] = useState(false);
-	const { toastList, setToastList } = useContext(projectContext);
+	const { toastList, setToastList, usuariosList } = useContext(projectContext);
 	const navigate = useNavigate();
 
 	function showToast(type, content) {
@@ -45,10 +45,12 @@ const UserProfile = () => {
 	}
 
 	useEffect(() => {
-		const loggedUser = users.find((user) => user.email === currentUser.email);
+		const loggedUser = usuariosList.find(
+			(user) => user.email === currentUser.email
+		);
 		setUserData(loggedUser);
 		setPhone(loggedUser.phonenumber);
-	}, [users, currentUser]);
+	}, [usuariosList, currentUser]);
 
 	const handleChange = (e) => {
 		setPhone(e.target.value);

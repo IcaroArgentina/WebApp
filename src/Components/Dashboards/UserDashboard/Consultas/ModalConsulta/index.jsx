@@ -28,10 +28,11 @@ const ModalConsulta = ({ setModalOpen }) => {
 	};
 
 	const handleSubmit = () => {
-		const ref = collection(db, `/Usuarios/${currentUser.uid}/Consultas`);
+		const ref = collection(db, 'Consultas');
 		const date = Date.now();
 
 		addDoc(ref, {
+			userUid: currentUser.uid,
 			motivo: reason,
 			mensajes: [
 				{
@@ -41,7 +42,7 @@ const ModalConsulta = ({ setModalOpen }) => {
 					read: false,
 				},
 			],
-			hidden: false,
+			isDeleted: false,
 		});
 		setPending(true);
 		setTimeout(() => {

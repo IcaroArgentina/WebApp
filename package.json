@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@emailjs/browser": "^3.6.2",
+		"@fvilers/disable-react-devtools": "^1.3.0",
 		"@testing-library/jest-dom": "^5.14.1",
 		"@testing-library/react": "^11.2.7",
 		"@testing-library/user-event": "^12.8.3",
@@ -11,6 +12,7 @@
 		"firebase": "^9.1.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"react-helmet": "^6.1.0",
 		"react-icons": "^4.3.1",
 		"react-modal": "^3.14.4",
 		"react-router-dom": "^6.3.0",
@@ -27,7 +29,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"postbuild": "react-snap"
 	},
 	"homepage": "https://icaro.org.ar",
 	"eslintConfig": {
@@ -47,5 +50,13 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"@babel/node": "^7.20.2",
+		"@babel/preset-env": "^7.20.2",
+		"@babel/preset-react": "^7.18.6",
+		"react-router-sitemap-generator": "^0.0.8",
+		"react-sitemap-stevedevops": "^0.4.0",
+		"react-snap": "^1.23.0"
 	}
 }

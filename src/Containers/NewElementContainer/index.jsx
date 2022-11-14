@@ -195,7 +195,11 @@ const NewElementContainer = ({
 		if (newData) {
 			const selectedCollection = getCollectionName(type);
 			const ref = collection(db, selectedCollection);
-			addDoc(ref, newData);
+			if (type === 'Comisiones') {
+				addDoc(ref, { ...newData, isHidden: false });
+			} else {
+				addDoc(ref, newData);
+			}
 			showToast('success', 'Se ha creado el elemento');
 		} else {
 			showToast('error', 'Ha ocurrido un error');

@@ -110,20 +110,11 @@ const EditElementContainer = ({ fieldsList, type, title, selectOptions }) => {
     const requiredFields = fieldsList
       .filter((elem) => elem.isRequired)
       .map((item) => item.nombre);
-    const dataKeys = Object.keys(newData);
 
+    Object.values(newData).length > 0 &&
     requiredFields.every((ai) => {
-      return (
-        dataKeys.includes(ai) && (newData[ai]?.length > 1 || newData[ai] !== '')
-      );
-    }) &&
-    (type === 'Comisiones' || type === 'Comision'
-      ? newData['fechaInicio']?.seconds > 0 &&
-        (newData['mpLink'] ? newData['mpLink'].includes('https://') : true) &&
-        (newData['mpLinkDto']
-          ? newData['mpLinkDto'].includes('https://')
-          : true)
-      : true)
+      return newData[ai]?.length > 1 || newData[ai] !== '';
+    })
       ? setDisabledButton(false)
       : setDisabledButton(true);
   }, [newData, fieldsList]);
@@ -193,7 +184,11 @@ const EditElementContainer = ({ fieldsList, type, title, selectOptions }) => {
 
   function getAuthomaticPath(nombre) {
     if (newData?.nombre?.length > 1) {
-      const generatedPath = newData.nombre.toLowerCase().replaceAll(' ', '-');
+      const generatedPath = newData.nombre
+        .toLowerCase()
+        .replaceAll(' ', '-')
+        .replaceAll('#', '')
+        .replaceAll('.', '');
       return generatedPath;
     }
   }
