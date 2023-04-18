@@ -17,6 +17,10 @@ export const FOOTERCONTENT = [
         url: '/contacto',
         nombre: 'Contacto',
       },
+      {
+        url: 'https://drive.google.com/file/d/1YOV8wShaHn4VPTFX_hf2P5VxOySbybb4/view?usp=sharing',
+        nombre: 'Términos y condiciones',
+      },
     ],
     Titulo: 'Información',
     Orden: 1,
